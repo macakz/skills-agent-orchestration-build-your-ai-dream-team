@@ -1,0 +1,46 @@
+{
+  "projects": [
+    {
+      "name": "Customer Portal Revamp",
+      "owner": "Priya Nair",
+      "status": "Active",
+      "recentActivity": "Shipped the new billing dashboard and closed 8 tickets this sprint.",
+      "priority": "High"
+    },
+    {
+      "name": "Mobile Checkout Redesign",
+      "owner": "Diego Alvarez",
+      "status": "At Risk",
+      "recentActivity": "Payment provider API changes are delaying the checkout flow rollout.",
+      "priority": "High"
+    },
+    {
+      "name": "Internal Analytics Pipeline",
+      "owner": "Sam Okafor",
+      "status": "Blocked",
+      "recentActivity": "Waiting on data governance approval before ingesting new PII fields.",
+      "priority": "Medium"
+    },
+    {
+      "name": "Onboarding Email Series",
+      "owner": "Lena Kowalski",
+      "status": "Completed",
+      "recentActivity": "Final email templates approved and scheduled for next release.",
+      "priority": "Low"
+    },
+    {
+      "name": "Design System Migration",
+      "owner": "Marcus Chen",
+      "status": "Active",
+      "recentActivity": "Migrated 40% of components to the new token-based theme.",
+      "priority": "Medium"
+    },
+    {
+      "name": "Legacy API Deprecation",
+      "owner": "Ava Thompson",
+      "status": "At Risk",
+      "recentActivity": "Three downstream teams still depend on the deprecated endpoints.",
+      "priority": "Low"
+    }
+  ]
+}

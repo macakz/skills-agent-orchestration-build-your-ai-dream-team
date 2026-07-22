@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Pulse</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Project Pulse</h1>
+    <p class="tagline">A live snapshot of what every team is shipping, blocked on, and prioritizing.</p>
+  </header>
+
+  <main class="dashboard" id="dashboard" aria-live="polite" aria-label="Project status cards">
+    <!--
+      Coder's app.js is responsible for:
+      1. fetch('./project-data.json')
+      2. Rendering one <article class="project-card" data-status="..." data-priority="..."> per project
+         inside this .dashboard/#dashboard container.
+      3. Handling empty/malformed data with a visible fallback message (e.g. <p class="empty-state">).
+
+      Each rendered card is expected to contain (see .project-card styles in styles.css):
+        - <h2 class="project-card__name">        → project name
+        - <p class="project-card__owner">         → owner, e.g. "Owner: Jane Doe"
+        - <span class="status-badge" data-status="active|at-risk|blocked|completed"> → status text
+        - <p class="project-card__activity">      → recentActivity summary
+        - <span class="priority-badge" data-priority="high|medium|low"> → priority text
+
+      Status/priority values should be normalized to lowercase, hyphenated tokens
+      (e.g. "At Risk" -> "at-risk") so they match the CSS attribute selectors below.
+    -->
+    <template id="project-card-template">
+      <article class="project-card">
+        <header class="project-card__header">
+          <h2 class="project-card__name"></h2>
+          <span class="priority-badge"></span>
+        </header>
+        <p class="project-card__owner"></p>
+        <span class="status-badge"></span>
+        <p class="project-card__activity"></p>
+      </article>
+    </template>
+
+    <p class="loading-state">Loading projects…</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>Project Pulse dashboard — data refreshed on load.</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

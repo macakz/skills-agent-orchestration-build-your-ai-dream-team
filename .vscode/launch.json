@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Project Pulse Dashboard",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "Start Project Pulse Server",
+      "url": "http://localhost:5500/index.html",
+      "webRoot": "${workspaceFolder}/app",
+      "serverReadyAction": {
+        "pattern": "Serving HTTP on .* port ([0-9]+)",
+        "uriFormat": "http://localhost:%s/index.html",
+        "action": "openExternally"
+      }
+    }
+  ]
+}

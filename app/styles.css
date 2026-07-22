@@ -1,0 +1,290 @@
+/* ==========================================================================
+   Project Pulse — Dashboard Styles
+   Owned by Designer. Coder's app.js should only add/remove DOM nodes using
+   the class names and data-attributes documented here; it should not need
+   to add new CSS.
+   ========================================================================== */
+
+:root {
+  --color-bg: #f4f6fb;
+  --color-surface: #ffffff;
+  --color-text: #1f2430;
+  --color-muted: #5b6472;
+  --color-border: #e2e6ee;
+  --color-accent: #4f5df7;
+
+  --color-status-active-bg: #e5f7ec;
+  --color-status-active-fg: #146c43;
+  --color-status-at-risk-bg: #fff4e0;
+  --color-status-at-risk-fg: #8a5300;
+  --color-status-blocked-bg: #fde8e8;
+  --color-status-blocked-fg: #9c1c1c;
+  --color-status-completed-bg: #e8ecfc;
+  --color-status-completed-fg: #3143b5;
+
+  --color-priority-high: #d63737;
+  --color-priority-medium: #d68a1c;
+  --color-priority-low: #2f8a4b;
+
+  --radius-lg: 14px;
+  --radius-sm: 6px;
+  --shadow-card: 0 2px 6px rgba(20, 24, 40, 0.06), 0 8px 24px rgba(20, 24, 40, 0.08);
+  --shadow-card-hover: 0 4px 10px rgba(20, 24, 40, 0.08), 0 14px 32px rgba(20, 24, 40, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Header / Footer ---------- */
+
+.site-header {
+  padding: 2rem 2rem 1.25rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.site-header .tagline {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+
+.site-footer {
+  margin-top: auto;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- Dashboard grid ---------- */
+
+.dashboard {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  padding: 1.75rem 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.loading-state,
+.empty-state,
+.error-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+
+.error-state {
+  color: var(--color-status-blocked-fg);
+  background: var(--color-status-blocked-bg);
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Project card ---------- */
+
+.project-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 6px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.project-card:hover,
+.project-card:focus-within {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.project-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.project-card__name {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.project-card__owner {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.project-card__activity {
+  margin: 0.25rem 0 0;
+  font-size: 0.92rem;
+  color: var(--color-text);
+}
+
+/* ---------- Status badges ----------
+   Coder should set data-status to a normalized, hyphenated lowercase value,
+   e.g. data-status="at-risk". Pair color with visible text (e.g. "Status: Active")
+   so meaning is never conveyed by color alone. */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  align-self: flex-start;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+.status-badge[data-status="active"] {
+  background: var(--color-status-active-bg);
+  color: var(--color-status-active-fg);
+}
+
+.status-badge[data-status="at-risk"] {
+  background: var(--color-status-at-risk-bg);
+  color: var(--color-status-at-risk-fg);
+}
+
+.status-badge[data-status="blocked"] {
+  background: var(--color-status-blocked-bg);
+  color: var(--color-status-blocked-fg);
+}
+
+.status-badge[data-status="completed"] {
+  background: var(--color-status-completed-bg);
+  color: var(--color-status-completed-fg);
+}
+
+/* Class-name fallbacks in case Coder prefers classes over data-attributes */
+.status-active {
+  background: var(--color-status-active-bg);
+  color: var(--color-status-active-fg);
+}
+
+.status-at-risk {
+  background: var(--color-status-at-risk-bg);
+  color: var(--color-status-at-risk-fg);
+}
+
+.status-blocked {
+  background: var(--color-status-blocked-bg);
+  color: var(--color-status-blocked-fg);
+}
+
+.status-completed {
+  background: var(--color-status-completed-bg);
+  color: var(--color-status-completed-fg);
+}
+
+/* ---------- Priority treatment ----------
+   Left border accent on the card gives an at-a-glance signal; the badge text
+   repeats the priority label so the signal is never color-only. */
+
+.priority-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  color: #fff;
+}
+
+.priority-badge[data-priority="high"],
+.priority-high {
+  background: var(--color-priority-high);
+}
+
+.priority-badge[data-priority="medium"],
+.priority-medium {
+  background: var(--color-priority-medium);
+}
+
+.priority-badge[data-priority="low"],
+.priority-low {
+  background: var(--color-priority-low);
+}
+
+.project-card[data-priority="high"] {
+  border-left-color: var(--color-priority-high);
+}
+
+.project-card[data-priority="medium"] {
+  border-left-color: var(--color-priority-medium);
+}
+
+.project-card[data-priority="low"] {
+  border-left-color: var(--color-priority-low);
+}
+
+/* ---------- Responsive behavior ---------- */
+
+@media (max-width: 640px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .site-header {
+    padding: 1.5rem 1.25rem 1rem;
+  }
+
+  .site-header h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Utility for screen-reader-only text, available for Coder's markup if needed */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
